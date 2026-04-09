@@ -1,0 +1,448 @@
+/* ============================================================
+   Penne Alfredo — Recipe Stylesheet
+   Aesthetic: Warm editorial / Italian trattoria meets modern magazine
+   Fonts: Playfair Display (headings) + Lora (body)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── CSS Variables ───────────────────────────────────────── */
+:root {
+  --cream:        #fdf8f1;
+  --warm-white:   #fffef9;
+  --parchment:    #f5ede0;
+  --tan:          #e8d5bb;
+  --gold:         #c4882a;
+  --gold-light:   #e6a84a;
+  --rust:         #b84c1a;
+  --deep-brown:   #2a1a0e;
+  --mid-brown:    #5c3d1e;
+  --text-main:    #2e1f0f;
+  --text-muted:   #7a5c3c;
+  --text-light:   #a08060;
+  --divider:      #ddc9a8;
+  --shadow-warm:  rgba(90, 45, 10, 0.12);
+  --shadow-deep:  rgba(42, 26, 14, 0.22);
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lora', 'Georgia', serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  32px;
+
+  --max-width: 740px;
+  --spacing-section: 3rem;
+}
+
+/* ── Reset & Base ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 17px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(196, 136, 42, 0.13) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header & Nav ────────────────────────────────────────── */
+header {
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--divider);
+  background: rgba(253, 248, 241, 0.85);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: var(--gold);
+}
+
+nav span {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* ── Main Layout ─────────────────────────────────────────── */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+article {
+  animation: fadeUp 0.7s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Page Title ──────────────────────────────────────────── */
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--deep-brown);
+  letter-spacing: -0.02em;
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin-top: 0.9rem;
+}
+
+/* Lead paragraph */
+article > p:first-of-type {
+  font-size: 1.1rem;
+  color: var(--mid-brown);
+  line-height: 1.85;
+  margin-bottom: 2.25rem;
+  font-style: italic;
+}
+
+/* ── Hero Image ──────────────────────────────────────────── */
+article > img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  display: block;
+  margin: 0 0 var(--spacing-section);
+  box-shadow:
+    0 2px 4px var(--shadow-warm),
+    0 12px 40px var(--shadow-deep);
+  object-fit: cover;
+  aspect-ratio: 16 / 10;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+article > img:hover {
+  transform: scale(1.01);
+  box-shadow:
+    0 4px 8px var(--shadow-warm),
+    0 20px 56px var(--shadow-deep);
+}
+
+/* ── Section Headings ────────────────────────────────────── */
+section {
+  margin-bottom: var(--spacing-section);
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--deep-brown);
+  letter-spacing: -0.01em;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1.5px solid var(--divider);
+}
+
+/* ── Recipe Details Card ─────────────────────────────────── */
+section:first-of-type ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+  background: transparent;
+  padding: 0;
+}
+
+section:first-of-type li {
+  background: var(--warm-white);
+  border: 1px solid var(--tan);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  font-size: 0.88rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  box-shadow: 0 2px 8px var(--shadow-warm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+section:first-of-type li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--shadow-warm);
+}
+
+section:first-of-type li strong {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* ── Ingredient List ─────────────────────────────────────── */
+section:nth-of-type(2) ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+section:nth-of-type(2) li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--divider);
+  font-size: 0.97rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  transition: background 0.15s ease;
+  border-radius: var(--radius-sm);
+  padding-left: 0.4rem;
+}
+
+section:nth-of-type(2) li:hover {
+  background: rgba(196, 136, 42, 0.06);
+}
+
+section:nth-of-type(2) li::before {
+  content: '●';
+  color: var(--gold-light);
+  font-size: 0.55rem;
+  flex-shrink: 0;
+  position: relative;
+  top: -0.5px;
+}
+
+/* ── Instructions List ───────────────────────────────────── */
+ol {
+  list-style: none;
+  padding: 0;
+  counter-reset: steps;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+ol li {
+  counter-increment: steps;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  background: var(--warm-white);
+  border: 1px solid var(--tan);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.2rem;
+  font-size: 0.96rem;
+  line-height: 1.75;
+  box-shadow: 0 2px 6px var(--shadow-warm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ol li:hover {
+  transform: translateX(3px);
+  box-shadow: 0 4px 16px var(--shadow-warm);
+}
+
+ol li::before {
+  content: counter(steps);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1;
+  padding-top: 0.15rem;
+}
+
+ol li strong {
+  color: var(--mid-brown);
+}
+
+/* ── Notes & Tips ────────────────────────────────────────── */
+section:nth-of-type(4) ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: var(--parchment);
+  border-left: 3.5px solid var(--gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.3rem 1.5rem;
+}
+
+section:nth-of-type(4) li {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--mid-brown);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+section:nth-of-type(4) li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.85rem;
+  top: 0.1rem;
+}
+
+section:nth-of-type(4) li strong {
+  color: var(--rust);
+}
+
+/* ── Nutrition Table ─────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow-warm);
+}
+
+thead tr {
+  background: var(--deep-brown);
+  color: var(--cream);
+}
+
+thead th {
+  padding: 0.8rem 1.2rem;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: none;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--divider);
+  transition: background 0.15s ease;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--parchment);
+}
+
+tbody tr:nth-child(odd) {
+  background: var(--warm-white);
+}
+
+tbody tr:hover {
+  background: rgba(196, 136, 42, 0.1);
+}
+
+td {
+  padding: 0.7rem 1.2rem;
+  border: none;
+  color: var(--text-main);
+}
+
+td:last-child {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--mid-brown);
+  font-weight: 500;
+}
+
+/* ── Small / footnote text ───────────────────────────────── */
+small {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--divider);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: var(--parchment);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 600px) {
+  html { font-size: 15px; }
+
+  main { padding: 0 1rem 4rem; }
+
+  header { padding: 1rem; }
+
+  h1 { font-size: 2.4rem; margin-top: 2.5rem; }
+
+  section:first-of-type ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  ol li {
+    grid-template-columns: 2rem 1fr;
+    gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
